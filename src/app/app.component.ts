@@ -30,27 +30,28 @@ export class AppComponent {
       password: ["", [Validators.required, Validators.minLength(5)]]
     });
   }
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
   isEmailUnique(control: FormControl) {
     const q = new Promise((resolve, reject) => {
       setTimeout(() => {
-        this.userService.isEmailRegisterd(control.value).subscribe(
-          (e:any) => {
-          console.log(e.data.status)
-          if(e.data.status === "EXISTS"){
+        this.userService.isEmailRegisterd(control.value).subscribe((e: any) => {
+          console.log(e.data.status);
+          if (e.data.status === "EXISTS") {
             resolve({ isEmailUnique: true });
           }
-            resolve(null);
-          });
+          resolve(null);
+        });
       }, 1000);
     });
     return q;
   }
 
   onSubmit() {
-    console.log(this.form.value)
-    // this.userService.signup(this.form.value).subscribe(e =>{
-      
-    // })
+    console.log(this.form.value);
+    this.userService.signup(this.form.value).subscribe((e) => {
+      console.log(e);
+    });
   }
 }
