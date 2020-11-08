@@ -8,8 +8,10 @@
     name="signupForm"
   >
     <h5 class="form-header text-center py-4 mb-3">
-      <strong>Sign up</strong>
+      <strong *ngIf="!userCreated">Sign up</strong>
+      <strong *ngIf="userCreated">User Created Successfully</strong>
     </h5>
+
     <div class="form-body">
       <div class="form-group text-left">
         <label for="login"
@@ -114,7 +116,10 @@
           type="submit"
           class="btn btn-lg btn-block btn-submit"
         >
-          Sign up
+          <span *ngIf="!submitted">Sign up</span>
+          <div *ngIf="submitted" class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
         </button>
       </div>
     </div>
