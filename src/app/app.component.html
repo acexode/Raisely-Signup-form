@@ -1,0 +1,118 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <form
+    class="text-left"
+    novalidate
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    name="signupForm"
+  >
+    <h5 class="form-header text-center py-4 mb-3">
+      <strong>Sign up</strong>
+    </h5>
+    <div class="form-body">
+      <div class="form-group text-left">
+        <label for="login"
+          >Email Address<span class="requiredSymbol">*</span></label
+        >
+        <input
+          autofocus
+          type="email"
+          id="email"
+          formControlName="email"
+          name="email"
+          class="form-control form-control-lg"
+          placeholder="Enter your email address"
+        />
+        <span *ngIf="form.get('email').dirty">
+          <small
+            class="error"
+            *ngIf="form.get('email').hasError('isEmailUnique')"
+            >This email has been registered already</small
+          >
+          <small class="error" *ngIf="form.get('email').hasError('required')"
+            >The Email field is required.</small
+          >
+          <small class="error" *ngIf="form.get('email').hasError('pattern')"
+            >The Email field must contain a valid email address.</small
+          >
+        </span>
+      </div>
+      <div class="form-group text-left">
+        <label for="firstname"
+          >First name<span class="requiredSymbol">*</span></label
+        >
+        <input
+          autofocus
+          type="text"
+          id="firstname"
+          formControlName="firstname"
+          name="firstname"
+          class="form-control form-control-lg"
+          placeholder="Enter Your first name"
+        />
+        <span
+          *ngIf="form.get('firstname').dirty || form.get('firstname').touched "
+        >
+          <small
+            class="error"
+            *ngIf="form.get('firstname').hasError('required')"
+            >First name is required.</small
+          >
+        </span>
+      </div>
+      <div class="form-group text-left">
+        <label for="lastname"
+          >Last name<span class="requiredSymbol">*</span></label
+        >
+        <input
+          autofocus
+          type="text"
+          id="lastname"
+          formControlName="lastname"
+          name="lastname"
+          class="form-control form-control-lg"
+          placeholder="Enter Your last name"
+        />
+        <span
+          *ngIf="form.get('lastname').dirty || form.get('lastname').touched "
+        >
+          <small class="error" *ngIf="form.get('lastname').hasError('required')"
+            >Last name is required.</small
+          >
+        </span>
+      </div>
+      <div class="form-group text-left">
+        <label for="password"
+          >Password<span class="requiredSymbol">*</span></label
+        >
+        <input
+          autofocus
+          type="password"
+          id="password"
+          formControlName="password"
+          name="password"
+          class="form-control form-control-lg"
+          placeholder="Enter your password"
+        />
+        <span
+          *ngIf="form.get('password').dirty || form.get('password').touched "
+        >
+          <small class="error" *ngIf="form.get('password').hasError('required')"
+            >password is required.</small
+          >
+          <small
+            class="error"
+            *ngIf="form.get('password').hasError('minlength')"
+            >Password must be at least 5 characters</small
+          >
+        </span>
+      </div>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-lg btn-block btn-submit">
+          Sign up
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
